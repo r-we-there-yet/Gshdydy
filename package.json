@@ -1,0 +1,14 @@
+{
+  "name": "virtualpitch-worker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute virtualpitch-db --file=./schema.sql",
+    "db:init:remote": "wrangler d1 execute virtualpitch-db --remote --file=./schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
