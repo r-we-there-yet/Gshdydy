@@ -1,0 +1,38 @@
+name = "virtualpitch"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[triggers]
+crons = [
+  "0 * * * *",   # Every hour  → price fluctuation + leaderboard cache
+  "0 0 * * *",   # Every day   → daily reset
+]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "virtualpitch-db"
+database_id = "3d33b4bb-8d7a-4af6-9e9e-fd5885cec103"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "5578e51027244ec7abcbc02e3828d2ef"
+
+[vars]
+APP_NAME    = "Virtual Pitch"
+APP_URL     = "https://virtualpitching.vercel.app"
+WORKER_ENV  = "production"
+
+# ── Secrets (set via: wrangler secret put SECRET_NAME) ───────
+# JWT_SECRET              → random 64-char string
+# REFRESH_SECRET          → separate random 64-char string
+# CLIENT_TOKEN_SECRET     → HMAC secret for Next.js → Worker verification
+# ADMIN_USERNAME          → admin login username
+# ADMIN_PASSWORD          → admin login password
+# ADMIN_JWT_SECRET        → separate secret for admin JWTs
+# GOOGLE_CLIENT_ID        → from Google Cloud Console
+# GOOGLE_CLIENT_SECRET    → from Google Cloud Console
+# GOOGLE_REDIRECT_URI     → https://virtualpitch.workers.dev/auth/google/callback
+# CLOUDINARY_CLOUD_NAME   → for image uploads
+# CLOUDINARY_API_KEY      → from Cloudinary dashboard
+# CLOUDINARY_API_SECRET   → from Cloudinary dashboard
